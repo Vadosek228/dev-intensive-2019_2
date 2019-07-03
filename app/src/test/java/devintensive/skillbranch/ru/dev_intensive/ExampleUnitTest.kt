@@ -1,10 +1,11 @@
 package devintensive.skillbranch.ru.dev_intensive
 
+import android.util.TimeUtils
 import devintensive.skillbranch.ru.dev_intensive.extensions.TimeUnits
 import devintensive.skillbranch.ru.dev_intensive.extensions.add
 import devintensive.skillbranch.ru.dev_intensive.extensions.format
 import devintensive.skillbranch.ru.dev_intensive.extensions.toUserView
-import devintensive.skillbranch.ru.dev_intensive.models.User
+import devintensive.skillbranch.ru.dev_intensive.models.*
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -93,9 +94,23 @@ class ExampleUnitTest {
     @Test
     fun test_dataq_maping(){
         val user = User.makeUser("Акулинин Владислав")
-        print(user)
-        val userView = user.toUserView()
+        val newUser = user.copy(lastVisit = Date().add(-7, TimeUnits.HOUR))
+
+        print(newUser)
+
+        val userView = newUser.toUserView()
 
         userView.printMe()
+    }
+
+    @Test
+    fun test_abstract_factory(){
+        val user = User.makeUser("Акулинин Владислав")
+        val user2 = User.makeUser("Акулинин Владислав")
+        val txtMessage = BaseMessage.makeMessage(user, Chat("0"), payload = "any text message", type = "text")
+        val imgMessage = BaseMessage.makeMessage(user2, Chat("0"), payload = "any image url", type = "image")
+
+        println(txtMessage.formateMessage())
+        println(imgMessage.formateMessage())
     }
 }

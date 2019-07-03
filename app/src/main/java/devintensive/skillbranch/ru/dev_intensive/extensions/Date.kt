@@ -1,5 +1,6 @@
 package devintensive.skillbranch.ru.dev_intensive.extensions
 
+import android.provider.ContactsContract
 import java.lang.IllegalStateException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,6 +33,11 @@ fun Date.add(value:Int, units: TimeUnits = TimeUnits.SECONDS) : Date{ //по у�
 
 fun Date.humanizeDiff(date: Date = Date()): String {
     //TODO("REASDAS")
+
+    when(date){
+
+    }
+
     return date.toString()
 }
 

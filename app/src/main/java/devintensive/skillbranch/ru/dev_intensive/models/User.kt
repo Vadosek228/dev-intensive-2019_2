@@ -10,12 +10,10 @@ data class User( //первичный конструктор
     var avatar: String?,
     var rating: Int = 0,
     var respect: Int = 0,
-    val lastVisit: Date? = null,
+    val lastVisit: Date? = Date(),
     val isOnlain: Boolean = false
 )
 {
-//    var introBit : String
-
     //вторичный конструктор
     constructor(id: String, firstName: String?, lastName: String?) : this(
         id = id,
@@ -28,35 +26,10 @@ data class User( //первичный конструктор
 
     //подблок, который будет вызван в любом случае (блок инициализации)
     init {
-//        introBit = getIntro()
-
         println("It's Alive!!! \n${if(lastName==="Doe") "His name id $firstName $lastName"
                                         else "And his name is $firstName $lastName!!!" }\n"
-//                                        + "${getIntro()}")
         )
     }
-
-//    private fun getIntro() = """
-//        tu tu tuttt
-//        werw werwr werwe
-//
-//        werwr
-//        werwerwe werwe werwer ....
-//
-//        $firstName $lastName
-//    """.trimIndent()
-//
-//    //ничего не возвращает
-//    fun printMe() = println("""
-//            id: $id
-//            firstName: $firstName
-//            lastName: $lastName
-//            avatar: $avatar
-//            rating: $rating
-//            respect: $respect
-//            lastVisit: $lastVisit
-//            isOnlain: $isOnlain
-//        """.trimIndent())
 
     //к объект, функциии от которого могут использоваться в любой части кода
     companion object Factory{
