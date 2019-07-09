@@ -1,6 +1,5 @@
 package devintensive.skillbranch.ru.dev_intensive.models
 
-import devintensive.skillbranch.ru.dev_intensive.extensions.format
 import java.util.*
 
 abstract class BaseMessage(

@@ -1,11 +1,11 @@
 package devintensive.skillbranch.ru.dev_intensive
 
-import android.util.TimeUtils
 import devintensive.skillbranch.ru.dev_intensive.extensions.TimeUnits
 import devintensive.skillbranch.ru.dev_intensive.extensions.add
 import devintensive.skillbranch.ru.dev_intensive.extensions.format
 import devintensive.skillbranch.ru.dev_intensive.extensions.toUserView
 import devintensive.skillbranch.ru.dev_intensive.models.*
+import devintensive.skillbranch.ru.dev_intensive.utils.Utils
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -22,17 +22,12 @@ class ExampleUnitTest {
         assertEquals(4, 2 + 2)
     }
 
+    //тест на создание объектов пользователя
     @Test
     fun test_instance() {
-//        val user = User("1")
+        val user = User("1")
         val user2 = User("2", "John", "Wick")
-//        val user3 = User("3", "John", "Silverhand", null, lastVisit = Date(), isOnlain = true)
-
-//        user.printMe()
-//        user2.printMe()
-//        user3.printMe()
-
-//        println("$user")
+        val user3 = User("3", "John", "Silverhand", null, lastVisit = Date(), isOnlain = true)
     }
 
     //как работает фабрика
@@ -42,6 +37,9 @@ class ExampleUnitTest {
         val user2 = User.makeUser("John Weck")
         val user3 = User.makeUser("")
         val user4 = user2.copy(id = "2", lastName = "Gav")
+        val user5 = User.makeUser(null)
+        val user6 = User.makeUser("John")
+        val user7 = User.makeUser(" ")
 
         print("$user2 \n$user4")
     }
@@ -50,6 +48,7 @@ class ExampleUnitTest {
     fun test_decomposition(){
         val user = User.makeUser("John Weck")
 
+        //возвращает информацию о пользователе
         fun getUserInfo() = user
 
         val (id, firstName, lastName) = getUserInfo()
@@ -86,7 +85,7 @@ class ExampleUnitTest {
 
         println("""
             ${user.lastVisit}
-            ${user2.lastVisit?.format()}
+            ${user2.lastVisit?.format("HH.mm")}
             ${user3.lastVisit?.format()}
         """.trimIndent())
     }
@@ -106,11 +105,35 @@ class ExampleUnitTest {
     @Test
     fun test_abstract_factory(){
         val user = User.makeUser("Акулинин Владислав")
-        val user2 = User.makeUser("Акулинин Владислав")
-        val txtMessage = BaseMessage.makeMessage(user, Chat("0"), payload = "any text message", type = "text")
-        val imgMessage = BaseMessage.makeMessage(user2, Chat("0"), payload = "any image url", type = "image")
+        val user2 = User.makeUser("Владислав")
+        val txtMessage = BaseMessage.makeMessage(user, Chat("0"), date = Date(), payload = "any text message", type = "text")
+        val imgMessage = BaseMessage.makeMessage(user2, Chat("0"), date = Date(), payload = "https://anyurl.com", type = "image")
 
         println(txtMessage.formateMessage())
         println(imgMessage.formateMessage())
+    }
+
+    @Test
+    fun toInitials(){
+
+        val user1 = Utils.toInitials("акулинин" ,"владислав") //JD
+        val user2 = Utils.toInitials("John", null) //J
+        val user3 = Utils.toInitials(null, null) //null
+        val user4 = Utils.toInitials(" ", "") //null
+
+        println(user1)
+        println(user2)
+        println(user3)
+        println(user4)
+
+    }
+
+    @Test
+    fun transliteration(){
+        val user1 = Utils.transliteration("Женя Стереотипов") //Zhenya Stereotipov
+        val user2 = Utils.transliteration("Amazing Петр","_") //Amazing_Petr
+
+        println(user1)
+        println(user2)
     }
 }

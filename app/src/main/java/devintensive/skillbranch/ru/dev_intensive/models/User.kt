@@ -31,23 +31,20 @@ data class User( //первичный конструктор
         )
     }
 
-    //к объект, функциии от которого могут использоваться в любой части кода
+    //объект, функциии от которого могут использоваться в любой части кода
+    //паттерн проектирования фабрика
     companion object Factory{
         private var lastId : Int = -1
 
+        //инкриментируем значение lastId
+        //принимает одну строку, из которой нужно сделать 2 строки
         fun makeUser(fullName:String?) : User{
+            lastId++
 
-            if(!fullName.isNullOrBlank()){
-                lastId++
+            //деструктуризация
+            val (firstName, lastName) = Utils.parseFullName(fullName)
+            return User(id = "$lastId", firstName = "$firstName", lastName = "$lastName")
 
-                //деструктуризация
-                val (firstName, lastName) = Utils.parseFullName(fullName)
-
-                return User(id = "$lastId", firstName = "$firstName", lastName = "$lastName")
-            }
-            else{
-                return User(id = "$lastId", firstName = "Данных нет", lastName = "!")
-            }
         }
     }
 
