@@ -1,4 +1,4 @@
-package devintensive.skillbranch.ru.dev_intensive
+package devintensive.skillbranch.ru.devintensive
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

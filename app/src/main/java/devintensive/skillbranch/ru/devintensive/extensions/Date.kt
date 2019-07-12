@@ -1,6 +1,6 @@
-package devintensive.skillbranch.ru.dev_intensive.extensions
+package devintensive.skillbranch.ru.devintensive.extensions
 
-import java.lang.IllegalStateException
+import android.provider.ContactsContract
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -50,16 +50,54 @@ fun Date.add(value:Int, units: TimeUnits = TimeUnits.SECONDS) : Date{ //по у�
 }
 
 //преобразовывает как расширение дату для пользователя
-fun Date.humanizeDiff(date: Date = Date()): String {
+fun Date.humanizeDiff(date: Date = Date()): String? {
     //TODO("REASDAS")
+
+    val second =
+        if (date <= Date()) {
+            date.seconds - Date().seconds
+        } else {
+            Date().seconds - date.seconds
+        }
+
+    val minute = date.minutes
+    val hours = date.hours
 
     var textData : String ?= ""
 
-    when(date){
-
+    if(second >= 0 || second <=1){
+        textData = "только что"
     }
+    else textData =""
+//    if (minute >= 75 || hours <= 22)
+//        textData = "N часов назад"
 
-    return date.toString()
+//    when(date){
+//        date.seconds - Date().seconds > 0 -> textData = ""
+//    }
+
+
+//    0с - 1с "только что"
+//
+//    1с - 45с "несколько секунд назад"
+//
+//    45с - 75с "минуту назад"
+//
+//    75с - 45мин "N минут назад"
+//
+//    45мин - 75мин "час назад"
+//
+//    75мин 22ч "N часов назад"
+//
+//    22ч - 26ч "день назад"
+//
+//    26ч - 360д "N дней назад"
+//
+//    >360д "более года назад"
+
+
+
+    return textData//date.toString()
 }
 
 //класс перечеслений (жестко объявим какие единицы можно использовать в данной функции)

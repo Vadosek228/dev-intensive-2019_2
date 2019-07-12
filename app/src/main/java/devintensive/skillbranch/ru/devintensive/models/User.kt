@@ -1,6 +1,6 @@
-package devintensive.skillbranch.ru.dev_intensive.models
+package devintensive.skillbranch.ru.devintensive.models
 
-import devintensive.skillbranch.ru.dev_intensive.utils.Utils
+import devintensive.skillbranch.ru.devintensive.utils.Utils
 import java.util.*
 
 data class User( //первичный конструктор

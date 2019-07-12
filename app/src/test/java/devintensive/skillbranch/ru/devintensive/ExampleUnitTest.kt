@@ -1,11 +1,8 @@
-package devintensive.skillbranch.ru.dev_intensive
+package devintensive.skillbranch.ru.devintensive
 
-import devintensive.skillbranch.ru.dev_intensive.extensions.TimeUnits
-import devintensive.skillbranch.ru.dev_intensive.extensions.add
-import devintensive.skillbranch.ru.dev_intensive.extensions.format
-import devintensive.skillbranch.ru.dev_intensive.extensions.toUserView
-import devintensive.skillbranch.ru.dev_intensive.models.*
-import devintensive.skillbranch.ru.dev_intensive.utils.Utils
+import devintensive.skillbranch.ru.devintensive.extensions.*
+import devintensive.skillbranch.ru.devintensive.models.*
+import devintensive.skillbranch.ru.devintensive.utils.Utils
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -135,5 +132,18 @@ class ExampleUnitTest {
 
         println(user1)
         println(user2)
+    }
+
+    @Test
+    fun humanizeDiff(){
+        val user1 = Date().add(2, TimeUnits.SECONDS).humanizeDiff() //2 часа назад
+        val user2 = Date().add(-5, TimeUnits.HOUR).humanizeDiff() //5 дней назад
+        Date().add(2, TimeUnits.MINUTE).humanizeDiff() //через 2 минуты
+        Date().add(7, TimeUnits.DAY).humanizeDiff() //через 7 дней
+        Date().add(-400, TimeUnits.DAY).humanizeDiff() //более года назад
+        Date().add(400, TimeUnits.DAY).humanizeDiff() //более чем через год
+
+        println(user1)
+//        println(user2)
     }
 }

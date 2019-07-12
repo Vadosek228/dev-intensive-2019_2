@@ -1,9 +1,8 @@
-package devintensive.skillbranch.ru.dev_intensive.extensions
+package devintensive.skillbranch.ru.devintensive.extensions
 
-import devintensive.skillbranch.ru.dev_intensive.models.User
-import devintensive.skillbranch.ru.dev_intensive.models.UserView
-import devintensive.skillbranch.ru.dev_intensive.utils.Utils
-import java.util.*
+import devintensive.skillbranch.ru.devintensive.models.User
+import devintensive.skillbranch.ru.devintensive.models.UserView
+import devintensive.skillbranch.ru.devintensive.utils.Utils
 
 fun User.toUserView() : UserView{
     val nickName = Utils.transliteration("$firstName $lastName")

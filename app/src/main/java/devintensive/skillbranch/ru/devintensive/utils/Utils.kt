@@ -1,4 +1,4 @@
-package devintensive.skillbranch.ru.dev_intensive.utils
+package devintensive.skillbranch.ru.devintensive.utils
 
 object Utils {
 
@@ -17,6 +17,8 @@ object Utils {
 
     fun transliteration(payload: String, divider: String = " "): String {
         var newPayload: String = payload
+
+        newPayload = newPayload.replace(" ", divider)
 
         newPayload = newPayload.replace("а", "a")
         newPayload = newPayload.replace("б", "b")
@@ -51,6 +53,39 @@ object Utils {
         newPayload = newPayload.replace("э", "e")
         newPayload = newPayload.replace("ю", "yu")
         newPayload = newPayload.replace("я", "ya")
+
+        newPayload = newPayload.replace("А", "A")
+        newPayload = newPayload.replace("б", "B")
+        newPayload = newPayload.replace("в", "V")
+        newPayload = newPayload.replace("г", "G")
+        newPayload = newPayload.replace("д", "D")
+        newPayload = newPayload.replace("е", "E")
+        newPayload = newPayload.replace("Ж", "Zh")
+        newPayload = newPayload.replace("З", "Z")
+        newPayload = newPayload.replace("И", "I")
+        newPayload = newPayload.replace("Й", "I")
+        newPayload = newPayload.replace("К", "K")
+        newPayload = newPayload.replace("Л", "L")
+        newPayload = newPayload.replace("М", "M")
+        newPayload = newPayload.replace("Н", "N")
+        newPayload = newPayload.replace("О", "O")
+        newPayload = newPayload.replace("П", "P")
+        newPayload = newPayload.replace("Р", "R")
+        newPayload = newPayload.replace("С", "S")
+        newPayload = newPayload.replace("Т", "T")
+        newPayload = newPayload.replace("У", "U")
+        newPayload = newPayload.replace("Ф", "F")
+        newPayload = newPayload.replace("Х", "H")
+        newPayload = newPayload.replace("Ц", "C")
+        newPayload = newPayload.replace("Ч", "Ch")
+        newPayload = newPayload.replace("Ш", "Sh")
+        newPayload = newPayload.replace("Щ", "Sh")
+        newPayload = newPayload.replace("Ъ", "")
+        newPayload = newPayload.replace("Ы", "I")
+        newPayload = newPayload.replace("Ь", "")
+        newPayload = newPayload.replace("Э", "E")
+        newPayload = newPayload.replace("Ю", "Yu")
+        newPayload = newPayload.replace("Я", "Ya")
 
         return newPayload
     }
