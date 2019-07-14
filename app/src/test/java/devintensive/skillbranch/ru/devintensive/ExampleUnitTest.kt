@@ -136,14 +136,18 @@ class ExampleUnitTest {
 
     @Test
     fun humanizeDiff(){
-        val user1 = Date().add(2, TimeUnits.SECONDS).humanizeDiff() //2 часа назад
-        val user2 = Date().add(-5, TimeUnits.HOUR).humanizeDiff() //5 дней назад
-        Date().add(2, TimeUnits.MINUTE).humanizeDiff() //через 2 минуты
-        Date().add(7, TimeUnits.DAY).humanizeDiff() //через 7 дней
-        Date().add(-400, TimeUnits.DAY).humanizeDiff() //более года назад
-        Date().add(400, TimeUnits.DAY).humanizeDiff() //более чем через год
+        val user1 = Date().add(1, TimeUnits.SECONDS).humanizeDiff() //2 часа назад
+        val user2 = Date().add(-5, TimeUnits.SECONDS).humanizeDiff() //5 дней назад
+        val user3 = Date().add(24, TimeUnits.SECONDS).humanizeDiff() //через 2 минуты
+        val user4 = Date().add(75, TimeUnits.SECONDS).humanizeDiff() //через 7 дней
+        val user5 = Date().add(-400, TimeUnits.DAY).humanizeDiff() //более года назад
+        val user6 = Date().add(2, TimeUnits.SECONDS).humanizeDiff() //более чем через год
 
         println(user1)
-//        println(user2)
+        println(user2)
+        println(user3)
+        println(user4)
+        println(user5)
+        println(user6)
     }
 }

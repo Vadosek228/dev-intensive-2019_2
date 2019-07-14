@@ -3,6 +3,7 @@ package devintensive.skillbranch.ru.devintensive.extensions
 import android.provider.ContactsContract
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 const val SECOND = 1000L
 const val MINUTE = 60 * SECOND
@@ -51,30 +52,110 @@ fun Date.add(value:Int, units: TimeUnits = TimeUnits.SECONDS) : Date{ //по у�
 
 //преобразовывает как расширение дату для пользователя
 fun Date.humanizeDiff(date: Date = Date()): String? {
-    //TODO("REASDAS")
+    val addDate = this
 
-    val second =
-        if (date <= Date()) {
-            date.seconds - Date().seconds
-        } else {
-            Date().seconds - date.seconds
-        }
+    var textData :String ?= null
 
-    val minute = date.minutes
-    val hours = date.hours
+//    val dif = if(addDate > date){
+//        addDate.time - date.time
+//    }else if(date > addDate){
+//        date.time - addDate.time
+//    }else addDate.time
 
-    var textData : String ?= ""
+    val date1 = date
+    val date2 = addDate
+    val calendar1 = Calendar.getInstance()
+    val calendar2 = Calendar.getInstance()
+    calendar1.time = date1
+    calendar2.time = date2
+    val milliseconds1 = calendar1.timeInMillis
+    val milliseconds2 = calendar2.timeInMillis
 
-    if(second >= 0 || second <=1){
+    var diff: Long ?= null
+
+    if(date1>date2){
+        diff = milliseconds1 - milliseconds2
+    }else{
+        diff = milliseconds2 - milliseconds1
+    }
+
+    val diffSeconds = diff / 1000
+    val diffMinutes = diff / (60 * 1000)
+    val diffHours = diff / (60 * 60 * 1000)
+    val diffDays = diff / (24 * 60 * 60 * 1000)
+
+    if(diffSeconds >= 0 || diffSeconds <= 1){
         textData = "только что"
     }
-    else textData =""
-//    if (minute >= 75 || hours <= 22)
-//        textData = "N часов назад"
+    if(diffSeconds>=1 || diffSeconds<=45){
+        textData = "несколько секунд назад"
+    }
+    if(diffSeconds<=45 && diffSeconds>=75){
+        textData = "минуту назад"
+    }
 
-//    when(date){
-//        date.seconds - Date().seconds > 0 -> textData = ""
+
+//    var second: Int ?= null
+//    var minute: Int ?= null
+//    var hour: Int ?= null
+//    var day: Int ?= null
+//
+
+//
+//    if(addDate >= date){
+//        second = addDate.seconds - date.seconds
+//        minute = addDate.minutes - date.minutes
+//        hour = addDate.hours - date.hours
+//        day = addDate.day - date.day
+//    }else{
+//        second = date.seconds - addDate.seconds
+//        minute = date.minutes - addDate.minutes
+//        hour = date.hours - addDate.hours
+//        day = date.day - addDate.day
 //    }
+//
+//    if(day == 0){
+//        if(hour == 0){
+//            if(minute == 0){
+//                if(second >= 0 || second <= 1){
+//                    textData = "только что"
+//                }
+//                else if(second>=1 || second<=45){
+//                    textData = "несколько секунд назад"
+//                }
+//            }
+//            else if(minute == 1){
+//                if(second<=15 && second>=45){
+//                    textData = "минуту назад"
+//                }
+//            }
+//            else if(minute>1 || minute<=45){
+//                textData = "$minute минут назад"
+//            }
+//        }
+//        else if(hour == 1){
+//            if(minute>=45 && minute<=15){
+//                textData = "час назад"
+//            }
+//        }
+//        else if(hour > 1 || hour <= 22){
+//            textData = "$hour часов назад"
+//        }
+//    }
+//    else if(day == 1){
+//        if(hour >= 22 && hour<=2){
+//            textData = "день назад"
+//        }
+//    }
+//    else if(day > 1 || day <= 360){
+//        textData = "$day дней назад"
+//    }
+//    else {
+//        if(day > 360){
+//            textData = "более года назад"
+//        }
+//    }
+
 
 
 //    0с - 1с "только что"
